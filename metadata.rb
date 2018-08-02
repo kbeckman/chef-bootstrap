@@ -10,3 +10,5 @@ license           'MIT'
 version           '0.1.0'
 chef_version      '~> 14' if respond_to?(:chef_version)
 supports          'mac_os_x', '>= 10.13'
+
+depends           'homebrew', '~> 5'
