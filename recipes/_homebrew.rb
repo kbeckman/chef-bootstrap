@@ -4,19 +4,19 @@ include_recipe 'homebrew'
 include_recipe 'homebrew::install_formulas'
 include_recipe 'homebrew::install_casks'
 
-# Remove dead symlinks from the Homebrew prefix...
+# Remove dead Homebrew symlinks...
 execute 'brew_prune' do
   user    homebrew_user
   command 'brew prune'
 end
 
-# Remove old versions of Homebrew formulas, including and associated download-cache items...
+# Remove old versions of Homebrew formulas (including any associated download-cache items)...
 execute 'brew_cleanup' do
   user    homebrew_user
   command 'brew cleanup'
 end
 
-# Remove cached downloads and tracker symlinks for any casks...
+# Remove cached Homebrew cask downloads and broken symlinks...
 execute 'brew_cask_cleanup' do
   user    homebrew_user
   command 'brew cask cleanup'
