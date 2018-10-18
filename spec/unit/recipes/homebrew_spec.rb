@@ -14,7 +14,6 @@ RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
     runner = ChefSpec::SoloRunner.new(CHEF_SPEC_OPTS) do |node|
       node.normal[COOKBOOK_NAME]['user'] = user
     end
-
     runner.converge(described_recipe)
   end
 
