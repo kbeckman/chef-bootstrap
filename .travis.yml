@@ -1,9 +1,10 @@
-sudo: false
+sudo: required
+distro: xenial
 
 addons:
   apt:
     sources:
-      - chef-stable-precise
+      - chef-current-xenial
     packages:
       - chefdk
 
