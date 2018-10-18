@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 name              'bootstrap'
 maintainer        'Keith Beckman'
 maintainer_email  'kbeckman@redfournine.com'

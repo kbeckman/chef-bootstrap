@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 homebrew_user = node[cookbook_name]['user']
 
 include_recipe 'homebrew'
