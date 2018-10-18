@@ -1,0 +1,25 @@
+sudo: false
+
+addons:
+  apt:
+    sources:
+      - chef-stable-precise
+    packages:
+      - chefdk
+
+install: echo "skip bundle install"
+
+#branches:
+#  only:
+#    - master
+
+before_script:
+  - eval "$(chef shell-init bash)"
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
+
+#  - chef exec delivery local all
+script:
+  - chef exec delivery local verify
+  - rubocop
