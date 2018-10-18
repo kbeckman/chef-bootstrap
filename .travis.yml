@@ -1,10 +1,10 @@
 sudo: required
-distro: xenial
+distro: trusty
 
 addons:
   apt:
     sources:
-      - chef-current-xenial
+      - chef-current-trusty
     packages:
       - chefdk
 
