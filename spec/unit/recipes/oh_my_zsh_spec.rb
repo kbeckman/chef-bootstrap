@@ -28,7 +28,7 @@ RSpec.describe "#{COOKBOOK_NAME}::oh_my_zsh" do
     allow(Mixlib::ShellOut).to receive(:new).with('echo $SHELL').and_return(shell_double)
   end
 
-  describe 'execute[change_shell_to_zsh]:' do
+  describe 'execute[change_shell_to_zsh]' do
     context '$SHELL is not ZSH' do
       before(:each) do
         shell_double = double('shell_double')
@@ -50,7 +50,7 @@ RSpec.describe "#{COOKBOOK_NAME}::oh_my_zsh" do
     end
   end
 
-  describe 'remote_file[ohmyzsh_installer]:' do
+  describe 'remote_file[ohmyzsh_installer]' do
     context '/Users/[user]/.oh-my-zsh does not exist' do
       before(:each) { allow(Dir).to receive(:exist?).with("/Users/#{user}/.oh-my-zsh").and_return(false) }
 
@@ -71,7 +71,7 @@ RSpec.describe "#{COOKBOOK_NAME}::oh_my_zsh" do
     end
   end
 
-  describe 'bash[install_ohmyzsh]:' do
+  describe 'bash[install_ohmyzsh]' do
     let(:subject) { chef_run.bash('install_ohmyzsh') }
 
     it 'is configured but does nothing until notified' do

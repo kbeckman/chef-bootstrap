@@ -19,33 +19,31 @@ RSpec.describe "#{COOKBOOK_NAME}::homesick" do
   end
 
   describe 'Gem Packages:' do
-    it 'installs homesick gem_package' do
+    it 'installs homesick' do
       expect(chef_run).to install_gem_package('homesick')
     end
   end
 
-  describe 'Execute Blocks:' do
-    describe 'clone_homesick_castle:' do
-      let(:homesick_repo) { "/Users/#{user}/.homesick/repos/#{castle_name}" }
+  describe 'execute[clone_homesick_castle]' do
+    let(:homesick_repo) { "/Users/#{user}/.homesick/repos/#{castle_name}" }
 
-      context 'castle dir does not exist' do
-        before(:each) { allow(Dir).to receive(:exist?).with(homesick_repo).and_return(false) }
+    context 'castle_dir does not exist' do
+      before(:each) { allow(Dir).to receive(:exist?).with(homesick_repo).and_return(false) }
 
-        it "executes 'clone_homesick_castle'" do
-          expect(chef_run).to run_execute('clone_homesick_castle').with(command: "homesick clone #{github_repo}")
-        end
-      end
-
-      context 'castle dir exists' do
-        before(:each) { allow(Dir).to receive(:exist?).with(homesick_repo).and_return(true) }
-
-        it "does not execute 'clone_homesick_castle'" do
-          expect(chef_run).to_not run_execute('clone_homesick_castle')
-        end
+      it 'executes command' do
+        expect(chef_run).to run_execute('clone_homesick_castle').with(command: "homesick clone #{github_repo}")
       end
     end
 
-    describe 'symlink_homesick_castle:' do
+    context 'castle_dir exists' do
+      before(:each) { allow(Dir).to receive(:exist?).with(homesick_repo).and_return(true) }
+
+      it 'does not execute' do
+        expect(chef_run).to_not run_execute('clone_homesick_castle')
+      end
+    end
+
+    describe 'execute[symlink_homesick_castle]' do
       let(:subject) { chef_run.execute('symlink_homesick_castle') }
 
       it 'is configured but does nothing until notified' do

@@ -17,7 +17,7 @@ RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
     runner.converge(described_recipe)
   end
 
-  before do
+  before(:each) do
     allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).and_call_original
     RECIPES.each { |recipe| allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).with(recipe) }
   end
@@ -32,9 +32,9 @@ RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
     end
   end
 
-  describe 'Execute Blocks:' do
-    EXECUTE_CMDS.each_pair do |resource, command|
-      it "executes '#{resource}'" do
+  EXECUTE_CMDS.each_pair do |resource, command|
+    describe "execute[#{resource}]" do
+      it 'executes' do
         expect(chef_run).to run_execute(resource.to_s).with(user: user, command: command)
       end
     end
