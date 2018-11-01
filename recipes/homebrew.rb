@@ -17,9 +17,3 @@ execute 'brew_cleanup' do
   user    homebrew_user
   command 'brew cleanup'
 end
-
-# Remove cached Homebrew cask downloads and broken symlinks...
-execute 'brew_cask_cleanup' do
-  user    homebrew_user
-  command 'brew cask cleanup'
-end
