@@ -6,6 +6,7 @@ AllCops:
 Layout/AlignHash:
   EnforcedColonStyle: table
   EnforcedHashRocketStyle: table
+  EnforcedLastArgumentHashStyle: ignore_implicit
 
 Layout/BlockAlignment:
   EnforcedStyleAlignWith: start_of_line
