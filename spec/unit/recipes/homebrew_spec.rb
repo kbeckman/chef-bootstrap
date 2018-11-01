@@ -3,10 +3,10 @@
 require 'spec_helper'
 
 RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
-  RECIPES       = %w[homebrew homebrew::install_formulas homebrew::install_casks].freeze
-  EXECUTE_CMDS  = { brew_prune:        'brew prune',
-                    brew_cleanup:      'brew cleanup',
-                    brew_cask_cleanup: 'brew cask cleanup' }.freeze
+  included_recipes  = %w[homebrew homebrew::install_formulas homebrew::install_casks].freeze
+  execute_cmds      = { brew_prune:        'brew prune',
+                        brew_cleanup:      'brew cleanup',
+                        brew_cask_cleanup: 'brew cask cleanup' }.freeze
 
   let(:user) { 'jduggan' }
 
@@ -19,11 +19,11 @@ RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
 
   before(:each) do
     allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).and_call_original
-    RECIPES.each { |recipe| allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).with(recipe) }
+    included_recipes.each { |recipe| allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).with(recipe) }
   end
 
   describe 'Included Recipes:' do
-    RECIPES.each do |recipe|
+    included_recipes.each do |recipe|
       it "includes '#{recipe}'" do
         expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with(recipe)
 
@@ -32,7 +32,7 @@ RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
     end
   end
 
-  EXECUTE_CMDS.each_pair do |resource, command|
+  execute_cmds.each_pair do |resource, command|
     describe "execute[#{resource}]" do
       it 'executes' do
         expect(chef_run).to run_execute(resource.to_s).with(user: user, command: command)
