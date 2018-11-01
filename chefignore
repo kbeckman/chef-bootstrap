@@ -62,6 +62,8 @@ Rakefile
 .travis.yml
 .foodcritic
 .codeclimate.yml
+.delivery*
+.rubocop*
 
 # SCM #
 #######
