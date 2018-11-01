@@ -58,7 +58,7 @@ RSpec.describe "#{COOKBOOK_NAME}::oh_my_zsh" do
         expect(chef_run).to create_remote_file('ohmyzsh_installer')
           .with(path:   "#{Chef::Config[:file_cache_path]}/install-ohmyzsh.sh",
                 source: 'http://install.ohmyz.sh',
-                mode:   '0777')
+                mode:   '0755')
       end
     end
 

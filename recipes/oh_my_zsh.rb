@@ -22,7 +22,7 @@ end
 remote_file 'ohmyzsh_installer' do
   path    "#{Chef::Config[:file_cache_path]}/install-ohmyzsh.sh"
   source  'http://install.ohmyz.sh'
-  mode    '0777'
+  mode    '0755'
   not_if  { ohmyzsh_exists }
 end
 
