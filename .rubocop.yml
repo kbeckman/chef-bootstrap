@@ -1,6 +1,5 @@
 inherit_from:
-  - 'commish-defaults.yml'
-#  - 'https://raw.githubusercontent.com/kbeckman/commish/0.2.0/commish-defaults.yml'
+  - 'https://raw.githubusercontent.com/kbeckman/commish/0.3.0/commish-defaults.yml'
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
