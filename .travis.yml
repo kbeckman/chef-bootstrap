@@ -14,6 +14,9 @@ branches:
   only:
     - master
 
+env:
+  - CHEF_LICENSE=accept-no-persist
+
 before_script:
   - eval "$(chef shell-init bash)"
   - chef --version
