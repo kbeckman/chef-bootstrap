@@ -22,5 +22,6 @@ before_script:
 
 #  - chef exec delivery local all
 script:
+  - chef --chef-license accept
   - chef exec delivery local verify
   - rubocop
