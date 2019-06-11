@@ -1,20 +1,16 @@
-name 'chef-bootstrap'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
-license 'All Rights Reserved'
-description 'Installs/Configures chef-bootstrap'
-long_description 'Installs/Configures chef-bootstrap'
-version '0.1.0'
-chef_version '>= 12.14' if respond_to?(:chef_version)
+# frozen_string_literal: true
 
-# The `issues_url` points to the location where issues for this cookbook are
-# tracked.  A `View Issues` link will be displayed on this cookbook's page when
-# uploaded to a Supermarket.
-#
-# issues_url 'https://github.com/<insert_org_here>/chef-bootstrap/issues'
+name              'bootstrap'
+maintainer        'Keith Beckman'
+maintainer_email  'kbeckman@redfournine.com'
+description       'Chef Cookbook for bootstrapping personal macOS environments.'
+long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+source_url        'https://github.com/kbeckman/chef-bootstrap'
+issues_url        'https://github.com/kbeckman/chef-bootstrap/issues'
 
-# The `source_url` points to the development repository for this cookbook.  A
-# `View Source` link will be displayed on this cookbook's page when uploaded to
-# a Supermarket.
-#
-# source_url 'https://github.com/<insert_org_here>/chef-bootstrap'
+license           'MIT'
+version           '0.1.0'
+chef_version      '>= 14' if respond_to?(:chef_version)
+supports          'mac_os_x', '>= 10.13'
+
+depends           'homebrew', '~> 5'

@@ -2,8 +2,9 @@
 
 require 'spec_helper'
 
-describe 'bootstrap::default' do
-  included_recipes = %w[bootstrap::homebrew bootstrap::oh_my_zsh bootstrap::homesick]
+RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
+  included_recipes  = %w[homebrew homebrew::install_formulas homebrew::install_casks].freeze
+  execute_cmds      = { brew_cleanup: 'brew cleanup' }.freeze
 
   let(:user) { 'jduggan' }
 
@@ -29,10 +30,11 @@ describe 'bootstrap::default' do
     end
   end
 
-  describe 'reboot[reboot_system]' do
-    it 'executes command' do
-      expect(chef_run).to request_reboot('reboot_system')
-        .with(reason: 'End of chef-client run...', delay_mins: 0)
+  execute_cmds.each_pair do |resource, command|
+    describe "execute[#{resource}]" do
+      it 'executes' do
+        expect(chef_run).to run_execute(resource.to_s).with(user: user, command: command)
+      end
     end
   end
 end

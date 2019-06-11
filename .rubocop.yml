@@ -1,0 +1,11 @@
+inherit_from:
+  - 'https://raw.githubusercontent.com/kbeckman/commish/0.3.0/commish-defaults.yml'
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default:  '[]'
+    '%i':     '[]'
+    '%I':     '[]'
+    '%w':     '[]'
+    '%W':     '[]'
+    '%r':     '{}'

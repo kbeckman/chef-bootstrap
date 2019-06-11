@@ -1,0 +1,29 @@
+sudo: required
+distro: trusty
+
+addons:
+  apt:
+    sources:
+      - chef-current-trusty
+    packages:
+      - chefdk
+
+install: echo "skip bundle install"
+
+branches:
+  only:
+    - master
+
+env:
+  - CHEF_LICENSE=accept-no-persist
+
+before_script:
+  - eval "$(chef shell-init bash)"
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
+
+#  - chef exec delivery local all
+script:
+  - chef exec delivery local verify
+  - rubocop
