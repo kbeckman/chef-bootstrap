@@ -4,8 +4,7 @@ require 'spec_helper'
 
 RSpec.describe "#{COOKBOOK_NAME}::homebrew" do
   included_recipes  = %w[homebrew homebrew::install_formulas homebrew::install_casks].freeze
-  execute_cmds      = { brew_prune:   'brew prune',
-                        brew_cleanup: 'brew cleanup' }.freeze
+  execute_cmds      = { brew_cleanup: 'brew cleanup' }.freeze
 
   let(:user) { 'jduggan' }
 
